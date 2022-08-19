@@ -1,0 +1,10 @@
+﻿docker build -f "C:\Users\mukesh_zala\Source\repos\MZ_Tech\SmartHub\Shopping\Shoppnig.Client\Dockerfile" --force-rm -t shoppnigclient  --label "com.microsoft.created-by=visual-studio" --label "com.microsoft.visual-studio.project-name=Shoppnig.Client" "C:\Users\mukesh_zala\Source\repos\MZ_Tech\SmartHub\Shopping"
+
+docker run -d -p 8080:80 --name myapp shoppingclient
+-- run docker at http://localhost:8080/
+
+to stop container 
+>docker stop 
+
+to start container
+>docker start
