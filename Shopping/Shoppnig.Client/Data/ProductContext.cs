@@ -23,7 +23,7 @@ namespace Shoppnig.Client.Data
                     Name = "Samsung 10",
                     Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
                     ImageFile = "product-2.png",
-                    Price = 840.00M,
+                    Price = 890.00M,
                     Category = "Smart Phone"
                 },
                 new Product()

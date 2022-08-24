@@ -8,3 +8,12 @@ to stop container
 
 to start container
 >docker start
+
+#ensure that image is created after building project in release mode. 
+#tag image app with dockerlogin/repositoryname
+docker tag ce23 mukeshzala/shooppnigapp
+
+image name : mukeshzala/shooppnigapp
+
+location of docker hub repository : 
+https://hub.docker.com/repository/docker/mukeshzala/shoppingapp/webhooks
