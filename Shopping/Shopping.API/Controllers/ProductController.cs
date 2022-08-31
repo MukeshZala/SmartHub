@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Shoppnig.API.Data;
 using Shoppnig.API.Models;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,7 @@ namespace Shopping.API.Controllers
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new Product
-            {
-                Name = "asd"
-            }).ToArray(); 
+            return ProductContext.Products; 
 
         }
     }
