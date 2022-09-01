@@ -1,4 +1,6 @@
-﻿using Shoppnig.API.Models;
+﻿using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
+using Shoppnig.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,34 @@ namespace Shoppnig.API.Data
 {
     public class ProductContext 
     {
-        public static readonly List<Product> Products = new List<Product>
+        public IMongoCollection<Product> ProductCollection { get; set; }
+
+        public ProductContext(IConfiguration configuration)
         {
-            new Product()
+            var client = new MongoClient(configuration["DatabaseSettings:ConnectionString"]);
+            var database = client.GetDatabase(configuration["DatabaseSettings:DatabaseName"]);
+
+
+            ProductCollection = database.GetCollection<Product>(configuration["DatabaseSettings:CollectionName"]);
+
+            SeedData(ProductCollection);
+
+        }
+
+        private void SeedData(IMongoCollection<Product> productCollection)
+        {
+            bool existProduct = productCollection.Find(p => true).Any(); 
+            if (!existProduct)
+            {
+                productCollection.InsertManyAsync(GetPreconfiguredProduct());
+
+            }
+        }
+
+        private IEnumerable<Product> GetPreconfiguredProduct()
+        {
+            return new List<Product>() {
+                 new Product()
                 {
                     Name = "IPhone X",
                     Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
@@ -58,6 +85,10 @@ namespace Shoppnig.API.Data
                     Price = 240.00M,
                     Category = "Home Kitchen"
                 }
-        };
+            };
+
+        }
+
+         
     }
 }
