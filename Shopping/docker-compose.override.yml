@@ -5,11 +5,19 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - "8000:80" #arrange port # of container 
 
   shoppnig.client:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - "8001:80" #arrange port # of container 
+
+  shopping.db:
+    container_name: shoppingdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db 
 
