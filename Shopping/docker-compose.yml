@@ -6,3 +6,10 @@ services:
     build:
       context: .
       dockerfile: Shopping.API/Dockerfile
+
+  shoppnig.client:
+    image: ${DOCKER_REGISTRY-}shoppnigclient
+    build:
+      context: .
+      dockerfile: Shoppnig.Client/Dockerfile
+
