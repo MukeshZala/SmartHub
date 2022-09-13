@@ -28,7 +28,13 @@ spec:
               cpu: "500m"
           env:
             - name: MONGO_INITDB_ROOT_USERNAME #https://hub.docker.com/_/mongo Example stack.yml for mongo:
-              value: asd                
+              valueFrom: 
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-root-username                
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: asd
+              valueFrom: 
+                secretKeyRef:
+                  name: mongo-secret
+                  key: mongo-root-password
                 
